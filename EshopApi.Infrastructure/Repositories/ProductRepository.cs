@@ -8,7 +8,7 @@ using EshopApi.Infrastructure.Data.Mapping;
 
 namespace EshopApi.Infrastructure.Repositories
 {
-    internal class ProductRepository(EshopDbContext context) : IProductRepository
+    public class ProductRepository(EshopDbContext context) : IProductRepository
     {
         private readonly IMapper _mapper = MappingConfig.CreateMapper();
 
@@ -17,7 +17,7 @@ namespace EshopApi.Infrastructure.Repositories
             return context.ProductEntities.ProjectTo<Product>(_mapper.ConfigurationProvider);
         }
 
-        public Product GetProductById(int id)
+        public Product GetProductById(Guid id)
         {
             var productEntity = context.ProductEntities.Find(id);
             return productEntity != null ? _mapper.Map<Product>(productEntity) : null;
@@ -37,7 +37,7 @@ namespace EshopApi.Infrastructure.Repositories
             context.SaveChanges();
         }
 
-        public void DeleteProduct(int id)
+        public void DeleteProduct(Guid id)
         {
             var productEntity = context.ProductEntities.Find(id);
             if (productEntity != null)
