@@ -1,23 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace EshopApi.Data
+namespace EshopApi.Infrastructure.Data.Entities
 {
-    public class Product
+    public class ProductEntity
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [Required]
-        public string ImgUri { get; set; }
+        public required string ImgUri { get; set; }
 
         [Required]
         [Precision(14, 2)]
         public decimal Price { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }

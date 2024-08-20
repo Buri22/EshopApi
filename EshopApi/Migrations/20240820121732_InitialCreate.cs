@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace EshopApi.Migrations
+namespace EshopApi.Presentation.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -11,7 +11,7 @@ namespace EshopApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "ProductEntities",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -23,7 +23,7 @@ namespace EshopApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_ProductEntities", x => x.Id);
                 });
         }
 
@@ -31,7 +31,7 @@ namespace EshopApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "ProductEntities");
         }
     }
 }
