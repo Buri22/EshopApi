@@ -1,11 +1,6 @@
 ﻿using EshopApi.Application.Repositories;
 using EshopApi.Domain.Entities;
 using EshopApi.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EshopApi.Application.Services
 {
@@ -16,6 +11,16 @@ namespace EshopApi.Application.Services
             return productRepository.GetAllProducts();
         }
 
+        public IEnumerable<Product> GetPaginatedProducts(int page, int pageSize)
+        {
+            return productRepository.GetPaginatedProducts(page, pageSize);
+        }
+
+        public int GetEntityCount()
+        {
+            return productRepository.GetEntityCount();
+        }
+
         public Product GetProductById(Guid id)
         {
             if (id == Guid.Empty) throw new ArgumentNullException(nameof(id));
@@ -23,20 +28,24 @@ namespace EshopApi.Application.Services
             return productRepository.GetProductById(id);
         }
 
-        public void AddProduct(Product product)
+        public Product AddProduct(Product product)
         {
             ValidateProduct(product);
 
             // Add business logic here, if needed
             productRepository.AddProduct(product);
+
+            return product;
         }
 
-        public void UpdateProduct(Product product)
+        public Product UpdateProduct(Product product)
         {
             ValidateProduct(product);
 
             // Add business logic here, if needed
             productRepository.UpdateProduct(product);
+
+            return product;
         }
 
         public void DeleteProduct(Guid id)

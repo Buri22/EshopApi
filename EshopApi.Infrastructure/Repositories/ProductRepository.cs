@@ -17,6 +17,19 @@ namespace EshopApi.Infrastructure.Repositories
             return context.ProductEntities.ProjectTo<Product>(_mapper.ConfigurationProvider);
         }
 
+        public IEnumerable<Product> GetPaginatedProducts(int page, int pageSize)
+        {
+            return context.ProductEntities
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ProjectTo<Product>(_mapper.ConfigurationProvider);
+        }
+
+        public int GetEntityCount()
+        {
+            return context.ProductEntities.Count();
+        }
+
         public Product GetProductById(Guid id)
         {
             var productEntity = context.ProductEntities.Find(id);

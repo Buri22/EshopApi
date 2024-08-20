@@ -4,7 +4,7 @@ using EshopApi.Application.Services;
 using EshopApi.Domain.Entities;
 using Moq;
 
-namespace EshopApi.Tests
+namespace EshopApi.Test
 {
     [TestFixture]
     public class ProductServiceTests
