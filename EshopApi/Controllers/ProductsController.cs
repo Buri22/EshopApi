@@ -1,27 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Asp.Versioning;
+using AutoMapper;
 using EshopApi.Application.Services;
 using EshopApi.Domain.Entities;
+using EshopApi.Presentation.Mapping;
 using EshopApi.Presentation.Models;
 using EshopApi.Presentation.Models.DTOs;
-using AutoMapper;
-using EshopApi.Presentation.Mapping;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EshopApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     public class ProductsController(IProductService productService) : ControllerBase
     {
         private readonly IMapper _mapper = MappingConfig.CreateMapper();
 
-        [HttpGet]
+        [HttpGet, MapToApiVersion("1.0")]
         public IActionResult GetAllProducts()
         {
             var products = productService.GetAllProducts();
             return Ok(products);
         }
 
-        [HttpGet]
+        [HttpGet, MapToApiVersion("2.0")]
         public IActionResult GetPaginatedProducts([FromQuery] PaginationRequest paginationRequest)
         {
             var products = productService.GetPaginatedProducts(paginationRequest.Page, paginationRequest.PageSize);
