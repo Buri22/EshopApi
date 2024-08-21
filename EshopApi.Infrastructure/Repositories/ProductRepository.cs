@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using EshopApi.Application.Extensions;
 using EshopApi.Application.Repositories;
 using EshopApi.Domain.Entities;
 using EshopApi.Infrastructure.Data;
@@ -20,8 +21,7 @@ namespace EshopApi.Infrastructure.Repositories
         public IEnumerable<Product> GetPaginatedProducts(int page, int pageSize)
         {
             return context.ProductEntities
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
+                .Paginate(page, pageSize)
                 .ProjectTo<Product>(_mapper.ConfigurationProvider);
         }
 
@@ -30,24 +30,26 @@ namespace EshopApi.Infrastructure.Repositories
             return context.ProductEntities.Count();
         }
 
-        public Product GetProductById(Guid id)
+        public Product? GetProductById(Guid id)
         {
             var productEntity = context.ProductEntities.Find(id);
             return productEntity != null ? _mapper.Map<Product>(productEntity) : null;
         }
 
-        public void AddProduct(Product product)
+        public Product CreateProduct(Product product)
         {
             var productEntity = _mapper.Map<ProductEntity>(product);
             context.ProductEntities.Add(productEntity);
             context.SaveChanges();
+            return _mapper.Map<Product>(productEntity);
         }
 
-        public void UpdateProduct(Product product)
+        public Product UpdateProduct(Product product)
         {
             var productEntity = _mapper.Map<ProductEntity>(product);
             context.ProductEntities.Update(productEntity);
             context.SaveChanges();
+            return _mapper.Map<Product>(productEntity);
         }
 
         public void DeleteProduct(Guid id)

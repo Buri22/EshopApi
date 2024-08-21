@@ -21,21 +21,19 @@ namespace EshopApi.Application.Services
             return productRepository.GetEntityCount();
         }
 
-        public Product GetProductById(Guid id)
+        public Product? GetProductById(Guid id)
         {
             if (id == Guid.Empty) throw new ArgumentNullException(nameof(id));
 
             return productRepository.GetProductById(id);
         }
 
-        public Product AddProduct(Product product)
+        public Product CreateProduct(Product product)
         {
             ValidateProduct(product);
 
             // Add business logic here, if needed
-            productRepository.AddProduct(product);
-
-            return product;
+            return productRepository.CreateProduct(product);
         }
 
         public Product UpdateProduct(Product product)
@@ -43,9 +41,7 @@ namespace EshopApi.Application.Services
             ValidateProduct(product);
 
             // Add business logic here, if needed
-            productRepository.UpdateProduct(product);
-
-            return product;
+            return productRepository.UpdateProduct(product);
         }
 
         public void DeleteProduct(Guid id)

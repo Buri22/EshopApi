@@ -38,18 +38,19 @@ namespace EshopApi.Controllers
         public IActionResult GetProductById(Guid id)
         {
             var product = productService.GetProductById(id);
-            if (product == null)
-                return NotFound();
+            if (product == null) return NotFound();
 
             return Ok(product);
         }
 
+        // TODO: Add endpoint to Get by ProductId list
+
         [HttpPost]
-        public IActionResult AddProduct([FromBody] ProductDTO productDTO)
+        public IActionResult CreateProduct([FromBody] ProductDTO productDTO)
         {
             if (productDTO == null) return BadRequest();
 
-            var product = productService.AddProduct(_mapper.Map<Product>(productDTO));
+            var product = productService.CreateProduct(_mapper.Map<Product>(productDTO));
             return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, product);
         }
 
@@ -59,8 +60,7 @@ namespace EshopApi.Controllers
             if (productDTO == null || id != productDTO.Id) return BadRequest();
 
             var product = productService.UpdateProduct(_mapper.Map<Product>(productDTO));
-            if (product == null)
-                return NotFound();
+            if (product == null) return NotFound();
 
             return Ok(product);
         }

@@ -11,10 +11,12 @@ namespace EshopApi.Infrastructure.Extensions
     {
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            // TODO: Check whether use mock or DB data
+            //services.AddDbContext<MockDbContext>
+
             services.AddDbContext<EshopDbContext>(options =>
                 options.UseSqlServer(
-                    configuration.GetConnectionString("AlzaEshopApiDb"),
-                    b => b.MigrationsAssembly("EshopApi.Presentation")
+                    configuration.GetConnectionString("AlzaEshopApiDb")
                 )
             );
 

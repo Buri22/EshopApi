@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace EshopApi.Presentation.Migrations
+namespace EshopApi.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class MakeProductDescriptionNullable : Migration

@@ -7,8 +7,8 @@ namespace EshopApi.Application.Services
         IEnumerable<Product> GetAllProducts();
         IEnumerable<Product> GetPaginatedProducts(int page, int pageSize);
         int GetEntityCount();
-        Product GetProductById(Guid id);
-        Product AddProduct(Product product);
+        Product? GetProductById(Guid id);
+        Product CreateProduct(Product product);
         Product UpdateProduct(Product product);
         void DeleteProduct(Guid id);
     }
