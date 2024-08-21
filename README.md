@@ -25,9 +25,9 @@ The API is documented using Swagger, which provides a interactive API documentat
 ### API Endpoints
 The Swagger documentation provides a list of available API endpoints, including:
 
-Products: GET /api/products - Retrieve a list of products
-Orders: POST /api/orders - Create a new order
-Customers: GET /api/customers - Retrieve a list of customers
+- **Products: ``GET /api/products``** - Retrieve a list of products
+- **Orders: ``POST /api/orders``** - Create a new order
+- **Customers: ``GET /api/customers``** - Retrieve a list of customers
 
 ### API Authentication
 The API uses JWT authentication. To authenticate, send a POST request to https://localhost:5001/api/auth/login with a valid username and password. The response will include a JWT token, which can be used to authenticate subsequent requests.

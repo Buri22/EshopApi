@@ -8,7 +8,7 @@ namespace EshopApi.Infrastructure.Data.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public required Guid Id { get; set; }
 
         [Required]
         public required string Name { get; set; }
@@ -18,7 +18,7 @@ namespace EshopApi.Infrastructure.Data.Entities
 
         [Required]
         [Precision(14, 2)]
-        public decimal Price { get; set; }
+        public required decimal Price { get; set; }
 
         public string? Description { get; set; }
     }

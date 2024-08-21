@@ -10,7 +10,7 @@ namespace EshopApi.Presentation.Models.DTOs
         [Required]
         public required string ImageUrl { get; set; }
         [Required]
-        public decimal Price { get; set; }
+        public required decimal Price { get; set; }
         public string? Description { get; set; }
     }
 }

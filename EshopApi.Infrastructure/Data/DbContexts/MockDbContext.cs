@@ -2,12 +2,11 @@
 using AutoMapper.QueryableExtensions;
 using Bogus;
 using EshopApi.Domain.Entities;
-using EshopApi.Infrastructure.Data;
 using EshopApi.Infrastructure.Data.Entities;
 using EshopApi.Infrastructure.Data.Mapping;
 using Microsoft.EntityFrameworkCore;
 
-namespace EshopApi.Test.MockData
+namespace EshopApi.Infrastructure.Data.DbContexts
 {
     public class MockDbContext : EshopDbContext
     {

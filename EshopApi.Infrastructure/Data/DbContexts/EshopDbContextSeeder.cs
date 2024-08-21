@@ -1,6 +1,6 @@
 ﻿using EshopApi.Infrastructure.Data.Entities;
 
-namespace EshopApi.Infrastructure.Data
+namespace EshopApi.Infrastructure.Data.DbContexts
 {
     public static class EshopDbContextSeeder
     {

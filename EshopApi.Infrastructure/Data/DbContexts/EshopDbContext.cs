@@ -1,7 +1,7 @@
 ﻿using EshopApi.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EshopApi.Infrastructure.Data
+namespace EshopApi.Infrastructure.Data.DbContexts
 {
     public class EshopDbContext : DbContext
     {

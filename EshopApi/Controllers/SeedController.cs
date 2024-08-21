@@ -1,4 +1,4 @@
-﻿using EshopApi.Infrastructure.Data;
+﻿using EshopApi.Infrastructure.Data.DbContexts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EshopApi.Presentation.Controllers

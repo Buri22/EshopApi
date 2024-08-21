@@ -1,6 +1,6 @@
 using EshopApi.Application.Services;
+using EshopApi.Infrastructure.Data.DbContexts;
 using EshopApi.Infrastructure.Repositories;
-using EshopApi.Test.MockData;
 using Microsoft.EntityFrameworkCore;
 
 namespace EshopApi.Test.UnitTests
@@ -82,7 +82,8 @@ namespace EshopApi.Test.UnitTests
             // Arrange
             var productEntities = MockDbContext.GenerateProductEntities(5);
             var dbContext = new MockDbContext(productEntities);
-            var productService = new ProductService(new ProductRepository(dbContext));
+            var productRepository = new ProductRepository(dbContext);
+            var productService = new ProductService(productRepository);
 
             var originalProductEntity = productEntities.First();
             var originalProduct = productService.GetProductById(originalProductEntity.Id);
