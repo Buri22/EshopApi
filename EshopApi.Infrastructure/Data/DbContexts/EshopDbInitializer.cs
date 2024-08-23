@@ -1,11 +1,14 @@
-﻿using EshopApi.Infrastructure.Data.Entities;
+﻿using EshopApi.Domain.Entities;
+using EshopApi.Infrastructure.Data.Entities;
 
 namespace EshopApi.Infrastructure.Data.DbContexts
 {
-    public static class EshopDbContextSeeder
+    public class EshopDbInitializer(EshopDbContext dbContext)
     {
-        public static void GenerateSeed(EshopDbContext dbContext)
+        public bool GenerateSeed()
         {
+            if (dbContext.ProductEntities.Any() || dbContext.AccountEntities.Any()) return false;
+
             // Create sample products
             var products = new[]
             {
@@ -17,7 +20,19 @@ namespace EshopApi.Infrastructure.Data.DbContexts
             };
 
             dbContext.ProductEntities.AddRange(products);
+
+            // Create Account for authentication
+            var account = new AccountEntity
+            {
+                Id = Guid.Parse("d5a6ae30-b59e-4ef3-878e-fee1f3a2da21"),
+                Secret = "5601610ff75c5b5de572fb8c8427f328"
+            };
+
+            dbContext.AccountEntities.Add(account);
+
             dbContext.SaveChanges();
+
+            return true;
         }
     }
 }

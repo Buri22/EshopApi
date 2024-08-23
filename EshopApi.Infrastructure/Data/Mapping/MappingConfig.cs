@@ -11,6 +11,7 @@ namespace EshopApi.Infrastructure.Data.Mapping
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Product, ProductEntity>().ReverseMap();
+                cfg.CreateMap<Account, AccountEntity>().ReverseMap();
             });
 
             return config.CreateMapper();

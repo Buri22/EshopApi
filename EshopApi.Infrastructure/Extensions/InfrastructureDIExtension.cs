@@ -7,10 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EshopApi.Infrastructure.Extensions
 {
-    public static class DIExtensions
+    public static class InfrastructureDIExtension
     {
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            // Check what kind of DB is needed for development
             var useMockData = configuration.GetValue<bool>("UseMockData");
             if (useMockData)
             {
@@ -25,7 +26,11 @@ namespace EshopApi.Infrastructure.Extensions
                 );
             }
 
+            services.AddTransient<EshopDbInitializer>();
+
+            // Repositories
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IAccountRepository, AccountRepository>();
         }
     }
 }

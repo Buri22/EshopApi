@@ -5,23 +5,15 @@ namespace EshopApi.Presentation.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class SeedController(EshopDbContext context) : ControllerBase
+    public class SeedController(EshopDbInitializer dbInitializer) : ControllerBase
     {
-        private readonly EshopDbContext _context = context;
-
         [HttpPost]
-        public async Task<IActionResult> GenerateSeedData()
+        public IActionResult GenerateSeedData()
         {
-            await _context.Database.EnsureCreatedAsync();
+            var success = dbInitializer.GenerateSeed();
 
-            if (_context.ProductEntities.Any())
-            {
-                return BadRequest("Attempt to GenerateSeed, but database is not empty.");
-            }
-
-            EshopDbContextSeeder.GenerateSeed(_context);
-
-            return Ok("Seed data generated successfully!");
+            if (success) return Ok("Seed data generated successfully!");
+            else return BadRequest("Attempt to GenerateSeed, but database is not empty.");
         }
     }
 }
